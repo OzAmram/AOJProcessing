@@ -87,6 +87,8 @@ cmsRun pfnano_data_2016UL_OpenData.py inputFiles=root://eospublic.cern.ch//eos/o
 
 ```
 
+The file locations for different samples can be found on the CERN Open Data Portal. A list of files for JetHT 2016 data is provided in `file_lists/`
+
 This step will produce a file of the name `nano_data2016.root` or
 `nano_mc2016post.root`.
 
@@ -111,9 +113,17 @@ This will require the saved jets to be matched to a specific type of generator l
 particle. 
 Specifically it require the quarks from the decay of this particle to be within
 deltaR < 0.8 of the selected AK8 jet. 
-This can be used to for example save a pure sample of boosted top jets from a ttbar
+This can be used to for example save a pure sample of boosted top jets from a ttbar.
 simulation. 
 This requires some customization per MC process to find the correct
 generator-level particle to match to.
-Currently, top quarks, W, Z and Higgs are supported.
+Currently, top quarks (from ttbar), W, Z and Higgs are supported.
+
+One can split up the input file list into smaller batches and run each separately over a grid system.
+The resulting hdf5 files from the different jobs can then be combined with the `H5_merge.py` utility like: 
+
+```
+python H5_merge.py merged.h5 file1.h5 file2.h5 ...` 
+
+```
 
